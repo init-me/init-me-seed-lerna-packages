@@ -1,0 +1,36 @@
+{
+  "name": "init-me-seed-lerna-packages",
+  "version": "0.1.0",
+  "description": "init-me seed init-me-seed-lerna-packages",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "eslint": "eslint ./index.js",
+    "test": "jest ./test"
+  },
+  "engines": {
+    "node": ">= 8.0.0"
+  },
+  "keywords": [
+    "init-me",
+    "seed",
+    "init-me-seed-lerna-packages"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "7.0.0",
+    "yyl-os": "0.10.0",
+    "yyl-print": "0.7.3",
+    "yyl-replacer": "0.2.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.6.0",
+    "eslint-plugin-html": "^6.1.2",
+    "eslint-plugin-node": "^10.0.0",
+    "jest": "^24.9.0",
+    "yyl-fs": "0.3.2",
+    "yyl-util": "2.3.5"
+  },
+  "repository": "https://github.com/init-me/init-me-seed-lerna-packages.git",
+  "author": "liudaojie <liudaojie@yy.com>"
+}
