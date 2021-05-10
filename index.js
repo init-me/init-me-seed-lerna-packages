@@ -193,7 +193,7 @@ const config = {
         ]
       }
       const oriPkgPath = path.join(targetPath, 'package.json')
-      const pkgPath = require(initData.targetPath, 'package.json')
+      const pkgPath = path.join(initData.targetPath, 'package.json')
       let oriPkg = {}
       if (fs.existsSync(oriPkgPath)) {
         oriPkg = require(oriPkgPath)
