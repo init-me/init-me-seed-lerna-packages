@@ -2,10 +2,8 @@ const inquirer = require('inquirer')
 const extOs = require('yyl-os')
 const fs = require('fs')
 const path = require('path')
-const rp = require('yyl-replacer')
 const print = require('yyl-print')
 const { mkdirSync } = require('yyl-fs')
-const util = require('yyl-util')
 
 const SEED_PATH = path.join(__dirname, './seeds')
 
@@ -75,15 +73,13 @@ const config = {
       }
       // - name
 
-      
-
       // + path
       if (env.path) {
         initData.path = env.path
       } else {
         let defaultPath = './packages'
-        if (lernaConfig?.packages.length) {
-          defaultPath = lernaConfig?.packages[0].replace(/\*$/, '')
+        if (lernaConfig.packages && lernaConfig.packages.length) {
+          defaultPath = lernaConfig.packages[0].replace(/\*$/, '')
         }
         questions.push({
           type: 'input',
@@ -185,23 +181,23 @@ const config = {
       // + package init
 
       const pkg = {
-        "main": "output/index.js",
-        "types": "output/index.d.ts",
-        "directories": {
-          "src": "src",
-          "output": "output",
-          "test": "__tests__"
+        main: 'output/index.js',
+        types: 'output/index.d.ts',
+        directories: {
+          src: 'src',
+          output: 'output',
+          test: '__tests__'
         },
-        "files": [
-          "output"
+        files: [
+          'output'
         ]
       }
       const oriPkgPath = path.join(targetPath, 'package.json')
+      const pkgPath = require(initData.targetPath, 'package.json')
       let oriPkg = {}
       if (fs.existsSync(oriPkgPath)) {
         oriPkg = require(oriPkgPath)
       }
-      const pkg = require(pkgPath)
       pkg.name = initData.name
       pkg.version = initData.version
       if (oriPkg.repository) {
@@ -211,8 +207,6 @@ const config = {
       if (oriPkg.author) {
         pkg.author = oriPkg.author
       }
-
-      
 
       fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2))
       // - package init
