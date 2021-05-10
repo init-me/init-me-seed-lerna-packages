@@ -1,6 +1,6 @@
 {
   "name": "init-me-seed-lerna-packages",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "init-me seed init-me-seed-lerna-packages",
   "main": "index.js",
   "types": "index.d.ts",

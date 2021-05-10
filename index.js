@@ -183,26 +183,38 @@ const config = {
       }
 
       // + package init
-      const pkgPath = path.join(initData.targetPath, 'package.json')
-      if (fs.existsSync(pkgPath)) {
-        const oriPkgPath = path.join(targetPath, 'package.json')
-        let oriPkg = {}
-        if (fs.existsSync(oriPkgPath)) {
-          oriPkg = require(oriPkgPath)
-        }
-        const pkg = require(pkgPath)
-        pkg.name = initData.name
-        pkg.version = initData.version
-        if (oriPkg.repository) {
-          pkg.repository = oriPkg.repository
-        }
 
-        if (oriPkg.author) {
-          pkg.author = oriPkg.author
-        }
-
-        fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2))
+      const pkg = {
+        "main": "output/index.js",
+        "types": "output/index.d.ts",
+        "directories": {
+          "src": "src",
+          "output": "output",
+          "test": "__tests__"
+        },
+        "files": [
+          "output"
+        ]
       }
+      const oriPkgPath = path.join(targetPath, 'package.json')
+      let oriPkg = {}
+      if (fs.existsSync(oriPkgPath)) {
+        oriPkg = require(oriPkgPath)
+      }
+      const pkg = require(pkgPath)
+      pkg.name = initData.name
+      pkg.version = initData.version
+      if (oriPkg.repository) {
+        pkg.repository = oriPkg.repository
+      }
+
+      if (oriPkg.author) {
+        pkg.author = oriPkg.author
+      }
+
+      
+
+      fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2))
       // - package init
 
       // + init
